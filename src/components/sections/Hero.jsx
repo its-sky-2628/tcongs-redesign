@@ -106,12 +106,10 @@ export default function Hero({ onStartProject }) {
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
   return (
-    /* ⚡ FIXED STATE: Removed the problematic 'bg-noise' string completely to restore ambient clarity */
     <section id="home" className="relative overflow-hidden bg-[#02040a] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center min-h-[auto] lg:min-h-[95vh] z-10">
       
       {/* BACKGROUND GRAPHICS LAYER */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden">
-        {/* ⚡ GRID MESH: Fine gradient alignment grid */}
         <motion.div style={{ x: gridX, y: gridY }} className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.85] transition-transform duration-300 ease-out" />
         <motion.div style={{ x: glowX, y: glowY }} className="absolute -left-32 top-12 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent blur-[130px] transform-gpu" />
         <motion.div style={{ x: useTransform(glowX, (v) => -v), y: useTransform(glowY, (v) => -v) }} className="absolute -right-20 top-0 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-cyan-500/15 via-indigo-600/5 to-transparent blur-[130px] transform-gpu" />
@@ -180,55 +178,17 @@ export default function Hero({ onStartProject }) {
               <ArrowRight className="h-4 w-4 relative transition-transform duration-300 group-hover:translate-x-1.5" />
             </button>
 
+            {/* ⚡ NEW UPGRADED GRADIENT BUTTON: Match hierarchy with distinct cyber contrast */}
             <motion.a
               href="#services" 
               onClick={handleServicesClick} 
               initial="initial"
               whileHover="hover" 
-              whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center justify-center rounded-xl overflow-hidden p-[1px] transition-all duration-300 z-10 min-w-[180px]"
+              whileTap={{ scale: 0.98 }}
+              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 px-8 py-4 text-sm font-bold text-white z-10 select-none cursor-pointer shadow-[0_4px_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all duration-300 hover:-translate-y-0.5 min-w-[180px]"
             >
-              {/* Backside Dynamic Glow */}
-              <motion.div 
-                variants={{
-                  initial: { opacity: 0 },
-                  hover: { opacity: 1 }
-                }}
-                className={`absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/40 to-orange-600/0 blur-md transition-all duration-300
-                  ${isServicesClicked ? 'opacity-100 scale-105 duration-500' : ''}`} 
-              />
-              
-              {/* Main Shell */}
-              <motion.div 
-                variants={{
-                  initial: { borderColor: "rgba(255, 255, 255, 0.25)", backgroundColor: "rgba(3, 7, 18, 0.6)", boxShadow: "0 0 0px rgba(0,0,0,0)" },
-                  hover: { borderColor: "rgba(245, 158, 11, 0.7)", backgroundColor: "rgba(15, 23, 42, 0.5)", boxShadow: "0 0 22px rgba(245, 158, 11, 0.25)" }
-                }}
-                animate={isServicesClicked ? { borderColor: "rgba(234, 88, 12, 1)", backgroundColor: "rgba(15, 23, 42, 0.8)", boxShadow: "0 0 25px rgba(245, 158, 11, 0.35)" } : undefined}
-                className="relative inline-flex w-full items-center justify-between gap-4 rounded-[11px] border px-6 py-4 text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-300 z-10 select-none"
-              >
-                <span className="tracking-wide block text-left w-full min-w-[100px]">View Services</span>
-                
-                <div className="flex-shrink-0 relative overflow-hidden">
-                  <motion.div
-                    variants={{
-                      initial: { rotate: 0, x: 0 },
-                      hover: { rotate: 45, x: 3 }
-                    }}
-                    animate={isServicesClicked ? { rotate: 45, x: 4 } : undefined}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 300, 
-                      damping: 15 
-                    }}
-                    className="inline-block"
-                  >
-                    <ArrowUpRight className={`h-4 w-4 transition-colors duration-300
-                      ${isServicesClicked ? 'text-orange-400' : 'text-slate-400 group-hover:text-amber-400'}`} 
-                    />
-                  </motion.div>
-                </div>
-              </motion.div>
+              <span className="relative tracking-wide font-bold">View Services</span>
+              <ArrowUpRight className="h-4 w-4 relative transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </motion.a>
           </motion.div>
 
