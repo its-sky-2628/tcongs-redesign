@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "../../data/navData";
-
+import logo from "../../assets/images/logo98.png";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,7 +61,7 @@ const Navbar = () => {
 
                 <div className="relative h-[74px] w-[74px] flex items-center justify-center flex-shrink-0 overflow-visible">
                   <img 
-                    src="src/assets/images/logo98.png" 
+                    src={logo}
                     alt="TCONGS Logo" 
                     className="h-full w-auto object-contain filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.3)]"
                   />
