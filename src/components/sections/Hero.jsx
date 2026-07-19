@@ -106,12 +106,12 @@ export default function Hero({ onStartProject }) {
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
   return (
-    /* ⚡ BASE STATE: Swapped to deep spatial obsidian dark base for maximum initial impact */
-    <section id="home" className="relative overflow-hidden bg-[#02040a] bg-noise pt-28 pb-16 md:pt-36 md:pb-24 flex items-center min-h-[auto] lg:min-h-[95vh] z-10">
+    /* ⚡ FIXED STATE: Removed the problematic 'bg-noise' string completely to restore ambient clarity */
+    <section id="home" className="relative overflow-hidden bg-[#02040a] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center min-h-[auto] lg:min-h-[95vh] z-10">
       
       {/* BACKGROUND GRAPHICS LAYER */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden">
-        {/* ⚡ GRID MESH: Fine gradient alignment grid to connect perfectly with the GlowDivider */}
+        {/* ⚡ GRID MESH: Fine gradient alignment grid */}
         <motion.div style={{ x: gridX, y: gridY }} className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.85] transition-transform duration-300 ease-out" />
         <motion.div style={{ x: glowX, y: glowY }} className="absolute -left-32 top-12 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent blur-[130px] transform-gpu" />
         <motion.div style={{ x: useTransform(glowX, (v) => -v), y: useTransform(glowY, (v) => -v) }} className="absolute -right-20 top-0 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-cyan-500/15 via-indigo-600/5 to-transparent blur-[130px] transform-gpu" />

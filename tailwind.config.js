@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         navy: {
-          950: '#05070F',
+          950: '#02040a',
           900: '#090D1B',
           800: '#0F1428',
           700: '#161C36',
@@ -35,10 +35,10 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       backgroundImage: {
-        'grid-fade': 'linear-gradient(to bottom, transparent, #05070F)',
+        'grid-fade': 'linear-gradient(to bottom, transparent, #02040a)',
         'aurora': 'radial-gradient(60% 50% at 20% 20%, rgba(99,102,241,0.25) 0%, transparent 60%), radial-gradient(50% 50% at 85% 15%, rgba(168,85,247,0.2) 0%, transparent 60%), radial-gradient(60% 60% at 50% 100%, rgba(34,211,238,0.15) 0%, transparent 60%)',
-        // ADDED: Real dynamic mathematical noise pattern overlay for that granular texturing
-        'noise': `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        /* VERCEL BUILD SECURE: Swapped out broken asset compilation matrix for a clean soft ambient radial filter */
+        'noise': 'radial-gradient(circle at center, rgba(255,255,255,0.01) 0%, transparent 100%)',
       },
       boxShadow: {
         glow: '0 0 40px -10px rgba(34,211,238,0.35)',
