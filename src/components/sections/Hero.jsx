@@ -94,7 +94,7 @@ export default function Hero({ onStartProject }) {
     }, 1500)
   }
 
-  // 5-10 Premium Floating Particles Configuration
+  // Premium Floating Round Particles Configuration
   const premiumParticles = [
     { top: '12%', left: '8%', size: '3px', duration: 8, delay: 0 },
     { top: '22%', left: '45%', size: '2px', duration: 11, delay: 1.5 },
@@ -106,15 +106,34 @@ export default function Hero({ onStartProject }) {
     { top: '35%', left: '25%', size: '2px', duration: 13, delay: 0.7 }
   ]
 
+  // ✨ Magic Ambient Sparkles Array Increased & Enhanced (15 Sparkles total)
+  const magicSparkles = [
+    { top: '10%', left: '15%', size: 14, duration: 6, delay: 0.2 },
+    { top: '18%', left: '40%', size: 12, duration: 5, delay: 1.5 },
+    { top: '15%', left: '75%', size: 16, duration: 7, delay: 0.8 },
+    { top: '30%', left: '88%', size: 11, duration: 6, delay: 2.1 },
+    { top: '28%', left: '55%', size: 15, duration: 8, delay: 0.4 },
+    { top: '42%', left: '12%', size: 13, duration: 9, delay: 1.7 },
+    { top: '48%', left: '35%', size: 17, duration: 7, delay: 3.0 },
+    { top: '52%', left: '68%', size: 10, duration: 5, delay: 0.9 },
+    { top: '65%', left: '82%', size: 15, duration: 8, delay: 2.5 },
+    { top: '62%', left: '22%', size: 14, duration: 6, delay: 1.1 },
+    { top: '75%', left: '5%', size: 12, duration: 7, delay: 0.3 },
+    { top: '78%', left: '45%', size: 16, duration: 9, delay: 1.9 },
+    { top: '88%', left: '28%', size: 13, duration: 5, delay: 2.7 },
+    { top: '85%', left: '72%', size: 15, duration: 8, delay: 0.6 },
+    { top: '92%', left: '90%', size: 11, duration: 6, delay: 1.3 }
+  ]
+
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
   return (
     <section id="home" className="relative overflow-hidden bg-[#02040a] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center min-h-[auto] lg:min-h-[95vh] z-10">
       
-      {/* BACKGROUND GRAPHICS LAYER (Mesh + Blobs + Noise) */}
+      {/* BACKGROUND GRAPHICS LAYER */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden">
         
-        {/* Film Grain Noise Texture (2-3% Opacity fine grain) */}
+        {/* Film Grain Noise Texture */}
         <div className="absolute inset-0 opacity-[0.025] mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4yIi8+Cjwvc3ZnPg==')] bg-repeat" />
         <svg className="hidden"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.025 0"/></filter></svg>
         <div className="absolute inset-0 filter url(#noiseFilter) opacity-100 mix-blend-screen" />
@@ -122,12 +141,12 @@ export default function Hero({ onStartProject }) {
         {/* Base Grid Lines */}
         <motion.div style={{ x: gridX, y: gridY }} className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.85] transition-transform duration-300 ease-out" />
         
-        {/* 3 Blurred Deep Glow Blobs */}
+        {/* Blurred Deep Glow Blobs */}
         <motion.div style={{ x: glowX, y: glowY }} className="absolute -left-32 top-12 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent blur-[140px] transform-gpu" />
         <motion.div style={{ x: useTransform(glowX, (v) => -v), y: useTransform(glowY, (v) => -v) }} className="absolute -right-20 top-0 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-cyan-500/15 via-indigo-600/5 to-transparent blur-[140px] transform-gpu" />
         <motion.div style={{ x: useTransform(glowX, (v) => v * 0.5), y: useTransform(glowY, (v) => v * 0.5) }} className="absolute left-[30%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-purple-600/5 via-transparent to-transparent blur-[120px] transform-gpu" />
 
-        {/* Floating Particles */}
+        {/* Floating Round Particles */}
         {premiumParticles.map((p, idx) => (
           <motion.div
             key={idx}
@@ -136,6 +155,36 @@ export default function Hero({ onStartProject }) {
             animate={{ y: [0, -28, 0], x: [0, idx % 2 === 0 ? 15 : -15, 0], opacity: [0.2, 0.8, 0.2] }}
             transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: "easeInOut" }}
           />
+        ))}
+
+        {/* ✨ Ambient Rotating/Glow Sparkles (Increased Number Layout) */}
+        {magicSparkles.map((s, idx) => (
+          <motion.div
+            key={`sparkle-${idx}`}
+            className="absolute pointer-events-none opacity-0 select-none"
+            style={{ 
+              top: s.top, 
+              left: s.left, 
+              width: s.size, 
+              height: s.size,
+            }}
+            animate={{ 
+              scale: [0, 1.3, 0.7, 1.4, 0],
+              opacity: [0, 0.55, 0.25, 0.65, 0],
+              rotate: [0, 90, 180, 270, 360],
+              y: [0, -35, -70]
+            }}
+            transition={{ 
+              duration: s.duration, 
+              repeat: Infinity, 
+              delay: s.delay, 
+              ease: "linear" 
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" className="w-full h-full text-cyan-400/50 drop-shadow-[0_0_8px_rgba(34,211,238,0.55)]">
+              <path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z" fill="currentColor"/>
+            </svg>
+          </motion.div>
         ))}
       </div>
 
@@ -205,7 +254,7 @@ export default function Hero({ onStartProject }) {
             </motion.a>
           </motion.div>
 
-          {/* Premium Stats Cards Block (With Lift Up & Deep Drop Shadow) */}
+          {/* Premium Stats Cards Block */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.75 }} className="mt-14 max-w-2xl mx-auto lg:mx-0 w-full">
             <div className="mb-6 h-[1px] w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
@@ -378,7 +427,7 @@ export default function Hero({ onStartProject }) {
                     <circle cx="130" cy="68" r="4.5" fill="#f97316" />
                     <circle cx="130" cy="68" r="9" fill="none" stroke="#ea580c" strokeWidth="1.5" className="animate-pulse" opacity="0.6" />
 
-                    {/* ⚡ MAXIMUM PEAK FIXED ENHANCED POINTER (Ancored at exact Max point cx=420, cy=40) */}
+                    {/* MAXIMUM PEAK POINTER */}
                     <circle cx="420" cy="40" r="6" fill="#ea580c" className="shadow-[0_0_15px_#ea580c]" />
                     <motion.circle 
                       cx="420" 
