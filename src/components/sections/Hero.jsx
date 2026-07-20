@@ -94,6 +94,7 @@ export default function Hero({ onStartProject }) {
     }, 1500)
   }
 
+  // Optimized 5-10 Premium Floating Particles
   const premiumParticles = [
     { top: '12%', left: '8%', size: '3px', duration: 8, delay: 0 },
     { top: '22%', left: '45%', size: '2px', duration: 11, delay: 1.5 },
@@ -101,6 +102,8 @@ export default function Hero({ onStartProject }) {
     { top: '78%', left: '28%', size: '2px', duration: 14, delay: 2.2 },
     { top: '19%', left: '88%', size: '3px', duration: 7, delay: 1.1 },
     { top: '48%', left: '72%', size: '2px', duration: 12, delay: 0.3 },
+    { top: '85%', left: '65%', size: '3px', duration: 10, delay: 1.8 },
+    { top: '35%', left: '25%', size: '2px', duration: 13, delay: 0.7 }
   ]
 
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
@@ -108,12 +111,28 @@ export default function Hero({ onStartProject }) {
   return (
     <section id="home" className="relative overflow-hidden bg-[#02040a] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center min-h-[auto] lg:min-h-[95vh] z-10">
       
-      {/* BACKGROUND GRAPHICS LAYER */}
+      {/* BACKGROUND GRAPHICS LAYER (Enhanced Mesh with Noise and Depth) */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden">
-        <motion.div style={{ x: gridX, y: gridY }} className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.85] transition-transform duration-300 ease-out" />
-        <motion.div style={{ x: glowX, y: glowY }} className="absolute -left-32 top-12 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent blur-[130px] transform-gpu" />
-        <motion.div style={{ x: useTransform(glowX, (v) => -v), y: useTransform(glowY, (v) => -v) }} className="absolute -right-20 top-0 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-cyan-500/15 via-indigo-600/5 to-transparent blur-[130px] transform-gpu" />
         
+        {/* 1. NOISE TEXTURE OVERLAY (2-3% Opacity fine film grain) */}
+        <div className="absolute inset-0 opacity-[0.025] mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4yIi8+Cjwvc3ZnPg==')] bg-repeat" />
+        <svg className="hidden"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.025 0"/></filter></svg>
+        <div className="absolute inset-0 filter url(#noiseFilter) opacity-100 mix-blend-screen" />
+
+        {/* Base Mesh Grid Lines */}
+        <motion.div style={{ x: gridX, y: gridY }} className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.85] transition-transform duration-300 ease-out" />
+        
+        {/* 2. THREE BLURRED GLOW BLOBS (Dynamic Ambient Depth) */}
+        {/* Blob 1: Cyan-Blue Left Spotlight */}
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute -left-32 top-12 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent blur-[140px] transform-gpu" />
+        
+        {/* Blob 2: Indigo-Teal Right Spotlight */}
+        <motion.div style={{ x: useTransform(glowX, (v) => -v), y: useTransform(glowY, (v) => -v) }} className="absolute -right-20 top-0 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-cyan-500/15 via-indigo-600/5 to-transparent blur-[140px] transform-gpu" />
+        
+        {/* Blob 3: Deep Cyber Violet Center/Bottom Spotlight */}
+        <motion.div style={{ x: useTransform(glowX, (v) => v * 0.5), y: useTransform(glowY, (v) => v * 0.5) }} className="absolute left-[30%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-purple-600/5 via-transparent to-transparent blur-[120px] transform-gpu" />
+
+        {/* 3. FLOATING PARTICLES (5-10 Optimized Star Dusts) */}
         {premiumParticles.map((p, idx) => (
           <motion.div
             key={idx}
@@ -325,11 +344,11 @@ export default function Hero({ onStartProject }) {
                       }}
                     />
 
-                    {/* Mid Peak (Normal Indicator) */}
+                    {/* Mid Peak Indicator */}
                     <circle cx="130" cy="68" r="4.5" fill="#f97316" />
                     <circle cx="130" cy="68" r="9" fill="none" stroke="#ea580c" strokeWidth="1.5" className="animate-pulse" opacity="0.6" />
 
-                    {/* ⚡ MAXIMUM PEAK ENHANCED POINTER: Dynamic pulsing loops anchored strictly on absolute peak (cx=420, cy=40) */}
+                    {/* MAXIMUM PEAK ENHANCED POINTER */}
                     <circle cx="420" cy="40" r="6" fill="#ea580c" className="shadow-[0_0_15px_#ea580c]" />
                     <motion.circle 
                       cx="420" 
