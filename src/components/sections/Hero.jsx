@@ -178,7 +178,6 @@ export default function Hero({ onStartProject }) {
               <ArrowRight className="h-4 w-4 relative transition-transform duration-300 group-hover:translate-x-1.5" />
             </button>
 
-            {/* ⚡ NEW UPGRADED GRADIENT BUTTON: Match hierarchy with distinct cyber contrast */}
             <motion.a
               href="#services" 
               onClick={handleServicesClick} 
@@ -325,21 +324,34 @@ export default function Hero({ onStartProject }) {
                         repeatType: "loop"
                       }}
                     />
-                  </svg>
 
-                  <motion.div 
-                    className="absolute h-3.5 w-3.5 rounded-full bg-orange-500 ring-4 ring-orange-500/20 shadow-[0_0_15px_#ea580c] z-10"
-                    style={{ left: '92%' }}
-                    animate={{ 
-                      y: [60, 42, 75, 50, 60],
-                      scale: [1, 1.25, 1]
-                    }}
-                    transition={{
-                      duration: 4,
-                      ease: "linear",
-                      repeat: Infinity
-                    }}
-                  />
+                    {/* Mid Peak (Normal Indicator) */}
+                    <circle cx="130" cy="68" r="4.5" fill="#f97316" />
+                    <circle cx="130" cy="68" r="9" fill="none" stroke="#ea580c" strokeWidth="1.5" className="animate-pulse" opacity="0.6" />
+
+                    {/* ⚡ MAXIMUM PEAK ENHANCED POINTER: Dynamic pulsing loops anchored strictly on absolute peak (cx=420, cy=40) */}
+                    <circle cx="420" cy="40" r="6" fill="#ea580c" className="shadow-[0_0_15px_#ea580c]" />
+                    <motion.circle 
+                      cx="420" 
+                      cy="40" 
+                      r="14" 
+                      fill="none" 
+                      stroke="#ea580c" 
+                      strokeWidth="2" 
+                      animate={{ scale: [0.8, 1.3, 0.8], opacity: [0.3, 0.8, 0.3] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <motion.circle 
+                      cx="420" 
+                      cy="40" 
+                      r="22" 
+                      fill="none" 
+                      stroke="#f97316" 
+                      strokeWidth="1" 
+                      animate={{ scale: [0.9, 1.5, 0.9], opacity: [0.1, 0.4, 0.1] }}
+                      transition={{ duration: 3, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </svg>
                 </div>
 
                 <div className="flex justify-between items-center mt-3 pt-2 border-t border-slate-900">
