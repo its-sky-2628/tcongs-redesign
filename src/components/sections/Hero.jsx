@@ -94,7 +94,7 @@ export default function Hero({ onStartProject }) {
     }, 1500)
   }
 
-  // Optimized 5-10 Premium Floating Particles
+  // 5-10 Premium Floating Particles Configuration
   const premiumParticles = [
     { top: '12%', left: '8%', size: '3px', duration: 8, delay: 0 },
     { top: '22%', left: '45%', size: '2px', duration: 11, delay: 1.5 },
@@ -111,28 +111,23 @@ export default function Hero({ onStartProject }) {
   return (
     <section id="home" className="relative overflow-hidden bg-[#02040a] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center min-h-[auto] lg:min-h-[95vh] z-10">
       
-      {/* BACKGROUND GRAPHICS LAYER (Enhanced Mesh with Noise and Depth) */}
+      {/* BACKGROUND GRAPHICS LAYER (Mesh + Blobs + Noise) */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none select-none overflow-hidden">
         
-        {/* 1. NOISE TEXTURE OVERLAY (2-3% Opacity fine film grain) */}
+        {/* Film Grain Noise Texture (2-3% Opacity fine grain) */}
         <div className="absolute inset-0 opacity-[0.025] mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4yIi8+Cjwvc3ZnPg==')] bg-repeat" />
         <svg className="hidden"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /><feColorMatrix type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.025 0"/></filter></svg>
         <div className="absolute inset-0 filter url(#noiseFilter) opacity-100 mix-blend-screen" />
 
-        {/* Base Mesh Grid Lines */}
+        {/* Base Grid Lines */}
         <motion.div style={{ x: gridX, y: gridY }} className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.85] transition-transform duration-300 ease-out" />
         
-        {/* 2. THREE BLURRED GLOW BLOBS (Dynamic Ambient Depth) */}
-        {/* Blob 1: Cyan-Blue Left Spotlight */}
+        {/* 3 Blurred Deep Glow Blobs */}
         <motion.div style={{ x: glowX, y: glowY }} className="absolute -left-32 top-12 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-blue-600/10 via-cyan-500/5 to-transparent blur-[140px] transform-gpu" />
-        
-        {/* Blob 2: Indigo-Teal Right Spotlight */}
         <motion.div style={{ x: useTransform(glowX, (v) => -v), y: useTransform(glowY, (v) => -v) }} className="absolute -right-20 top-0 h-[750px] w-[750px] rounded-full bg-gradient-to-br from-cyan-500/15 via-indigo-600/5 to-transparent blur-[140px] transform-gpu" />
-        
-        {/* Blob 3: Deep Cyber Violet Center/Bottom Spotlight */}
         <motion.div style={{ x: useTransform(glowX, (v) => v * 0.5), y: useTransform(glowY, (v) => v * 0.5) }} className="absolute left-[30%] bottom-[-10%] h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-purple-600/5 via-transparent to-transparent blur-[120px] transform-gpu" />
 
-        {/* 3. FLOATING PARTICLES (5-10 Optimized Star Dusts) */}
+        {/* Floating Particles */}
         {premiumParticles.map((p, idx) => (
           <motion.div
             key={idx}
@@ -210,16 +205,19 @@ export default function Hero({ onStartProject }) {
             </motion.a>
           </motion.div>
 
-          {/* Premium Stats Cards Block */}
+          {/* Premium Stats Cards Block (With Lift Up & Deep Drop Shadow) */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.75 }} className="mt-14 max-w-2xl mx-auto lg:mx-0 w-full">
             <div className="mb-6 h-[1px] w-full bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
               {heroStats.map((stat) => (
                 <motion.div 
                   key={stat.label}
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="relative p-4 rounded-xl border border-slate-800/50 bg-[#050911]/60 backdrop-blur-sm group transition-all duration-300 hover:border-cyan-500/40 hover:bg-slate-900/40 hover:shadow-[0_4px_30px_rgba(6,182,212,0.15)] overflow-hidden cursor-default"
+                  whileHover={{ 
+                    y: -6,
+                    boxShadow: "0 20px 50px rgba(0, 0, 0, 0.35)"
+                  }}
+                  transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                  className="relative p-4 rounded-xl border border-slate-800/50 bg-[#050911]/60 backdrop-blur-sm group transition-all duration-300 hover:border-cyan-500/40 hover:bg-slate-900/40 overflow-hidden cursor-default"
                 >
                   <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="flex items-center gap-2 mb-2">
@@ -297,22 +295,39 @@ export default function Hero({ onStartProject }) {
                 </div>
 
                 {/* GRAPH INTERFACE */}
-                <div className="h-36 w-full mt-6 relative overflow-hidden select-none">
+                <div className="h-36 w-full mt-6 relative overflow-hidden select-none bg-[#04070d]/60 rounded-xl border border-slate-950">
                   <svg className="w-full h-full overflow-visible" viewBox="0 0 520 140" preserveAspectRatio="none">
                     <defs>
+                      {/* Subtle Background Grid Pattern */}
+                      <pattern id="graphGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffffff" strokeWidth="1" strokeOpacity="0.02" />
+                      </pattern>
+
                       <linearGradient id="chartLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="#2563eb" />
                         <stop offset="35%" stopColor="#a855f7" />
                         <stop offset="70%" stopColor="#db2777" />
                         <stop offset="100%" stopColor="#ea580c" />
                       </linearGradient>
+                      
+                      {/* Soft Ambient Area Glow */}
                       <linearGradient id="chartAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#db2777" stopOpacity="0.15" />
-                        <stop offset="50%" stopColor="#a855f7" stopOpacity="0.04" />
+                        <stop offset="0%" stopColor="#db2777" stopOpacity="0.18" />
+                        <stop offset="40%" stopColor="#a855f7" stopOpacity="0.06" />
                         <stop offset="100%" stopColor="transparent" stopOpacity="0" />
                       </linearGradient>
+
+                      {/* Extra Aura Line Glow Filter */}
+                      <filter id="lineGlow" x="-10%" y="-10%" width="120%" height="120%">
+                        <feGaussianBlur stdDeviation="4" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
                     </defs>
 
+                    {/* Rect containing the Grid Pattern */}
+                    <rect width="100%" height="100%" fill="url(#graphGrid)" />
+
+                    {/* Filled Glow Area beneath the line */}
                     <motion.path
                       d="M 10,105 
                          C 60,104 90,80 130,68 
@@ -323,6 +338,21 @@ export default function Hero({ onStartProject }) {
                       fill="url(#chartAreaGrad)"
                     />
 
+                    {/* Duplicate Glow Line Trace */}
+                    <path
+                      d="M 10,105 
+                         C 60,104 90,80 130,68 
+                         C 180,54 210,95 260,90 
+                         C 320,84 360,35 420,40 
+                         C 455,43 475,62 495,85"
+                      fill="none"
+                      stroke="url(#chartLineGrad)"
+                      strokeWidth="6"
+                      opacity="0.35"
+                      filter="url(#lineGlow)"
+                    />
+
+                    {/* Main Animated Chart Line */}
                     <motion.path
                       d="M 10,105 
                          C 60,104 90,80 130,68 
@@ -348,7 +378,7 @@ export default function Hero({ onStartProject }) {
                     <circle cx="130" cy="68" r="4.5" fill="#f97316" />
                     <circle cx="130" cy="68" r="9" fill="none" stroke="#ea580c" strokeWidth="1.5" className="animate-pulse" opacity="0.6" />
 
-                    {/* MAXIMUM PEAK ENHANCED POINTER */}
+                    {/* ⚡ MAXIMUM PEAK FIXED ENHANCED POINTER (Ancored at exact Max point cx=420, cy=40) */}
                     <circle cx="420" cy="40" r="6" fill="#ea580c" className="shadow-[0_0_15px_#ea580c]" />
                     <motion.circle 
                       cx="420" 
